@@ -1,0 +1,74 @@
+<div style="margin: 2em; ;">
+    <form [formGroup]="data_feedback" (ngSubmit)="onSubmit()">
+        <label>
+            Name:<br>
+            <input type="text" formControlName="name">
+        </label>
+        <br><br>
+        <div>
+            <label>
+                E-mail: <br>
+                <input type="email" formControlName="email">
+            </label>
+        </div>
+        <br>
+        <div>Feedback:</div>
+        <div>
+            <input type="radio" id="1" formControlName="feedback" value="Great">
+            <label for="1">Great</label>
+            <input type="radio" id="2" formControlName="feedback" value="Okay">
+            <label for="2">Okay</label>
+            <input type="radio" id="3" formControlName="feedback" value="Not good">
+            <label for="3">Not good</label>
+        </div>
+        <br>
+        <label>
+            <label for="comms">Comments: </label><br>
+            <textarea rows="6" cols="30" id="comms" formControlName="comment" placeholder="Add additional comments here">
+
+            </textarea>
+        </label>
+        <br><br>
+    </form>
+    <button type="submit">Submit</button>
+    <br>
+
+    <div style="width: 100%;">
+        <div style="width: 50%; float: left;">
+            <h3>Current Form Values...</h3>
+            <ul>
+                <li>
+                    <b>Name</b>: {{data_feedback.get('name').value}}
+                </li>
+                <li>
+                    <b>Email</b>: {{data_feedback.get('email').value}}
+                </li>
+                <li>
+                    <b>Feedback</b>: {{data_feedback.get('feedback').value}}
+                </li>
+                <li>
+                    <b>Comments</b>: {{data_feedback.get('comment').value}}
+                </li>
+            </ul>
+        </div>
+        <div style="width: 50%; float: left;">
+            <h3>Last valid POST to backend...</h3>
+            <ul>
+                <li>
+                    <b>Name</b>: {{data.name}}
+                </li>
+                <li>
+                    <b>Email</b>: {{data.email}}
+                </li>
+                <li>
+                    <b>Feedback</b>: {{data.feedback}}
+                </li>
+                <li>
+                    <b>Comments</b>: {{data.comment}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- <button (click)="setDefault()">Default</button> -->
+</div>
+
