@@ -53,13 +53,13 @@ export class FormComponent implements OnInit {
   validateForm() {
     let valid: boolean = true;
     const controls = this.data_feedback.controls;
-    // for (let name in controls) {
-    //   this.messageService.clear();
-    //   if (controls[name].invalid) {
-    //     valid = false;
-    //     this.messageService.add(`Invalid input in the field ${name.toUpperCase()}`);
-    //   }
-    // }
+    for (let name in controls) {
+      // this.messageService.clear();
+      if (controls[name].invalid) {
+        valid = false;
+        // this.messageService.add(`Invalid input in the field ${name.toUpperCase()}`);
+      }
+    }
     return valid;
   }
 
@@ -73,7 +73,7 @@ export class FormComponent implements OnInit {
   }
 
   setForm(data: FormResponse): void {
-    // console.log(data);
+    console.log(data);
     this.data_feedback.setValue({
       name: data.name,
       email: data.email,

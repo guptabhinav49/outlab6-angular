@@ -26,6 +26,7 @@ export class DataService {
   }
 
   postValues(data: FormResponse) {
+    // console.log("adnskjnf");
     return this.http.post<FormResponse>(this.postUrl, data, this.httpOptions)
   }
 }
