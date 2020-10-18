@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataService } from '../data.service';
 import { FormResponse } from '../formResponse';
-// import { MessageService } from '../message.service';
+import { MessageService } from '../message.service';
 
 
 @Component({
@@ -31,7 +31,7 @@ export class FormComponent implements OnInit {
 
   constructor(
     private dataservice: DataService,
-    // private messageService: MessageService,
+    private messageService: MessageService,
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +41,7 @@ export class FormComponent implements OnInit {
   onSubmit(): void{
     
     if(!this.validateForm()){
+      this.messageService.pop();
       return;
     }
 
@@ -48,16 +49,19 @@ export class FormComponent implements OnInit {
     this.dataservice.postValues(this.data).subscribe(
       data => console.log(data)
     )
+    this.messageService.clear();
+    this.messageService.add('POST successfull!!')
+    this.messageService.pop();
   }
 
   validateForm() {
     let valid: boolean = true;
     const controls = this.data_feedback.controls;
+    this.messageService.add("Invalid input in field(s): ")
     for (let name in controls) {
-      // this.messageService.clear();
       if (controls[name].invalid) {
         valid = false;
-        // this.messageService.add(`Invalid input in the field ${name.toUpperCase()}`);
+        this.messageService.add(`${name.toUpperCase()}`);
       }
     }
     return valid;
